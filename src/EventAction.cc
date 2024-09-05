@@ -94,41 +94,26 @@ void EventAction::BeginOfEventAction(const G4Event* /*event*/)
 void EventAction::EndOfEventAction(const G4Event* event)
 {
   // Get hits collections IDs (only once)
-  if ( fAbsHCID == -1 ) {
-    fAbsHCID = G4SDManager::GetSDMpointer()->GetCollectionID("DetectorHitsCollection");
-//    fGapHCID = G4SDManager::GetSDMpointer()->GetCollectionID("GapHitsCollection");
+  if ( fDetHCID == -1 ) {
+    fDetHCID = G4SDManager::GetSDMpointer()->GetCollectionID("DetectorHitsCollection");
   }
 
   // Get hits collections
-  auto absoHC = GetHitsCollection(fAbsHCID, event);
+  auto detHC = GetHitsCollection(fDetHCID, event);
 
   // Get hit with total values
-  auto absoHit = (*absoHC)[absoHC->entries()-1];
-
-  // Print per event (modulo n)
-  //
-  auto eventID = event->GetEventID();
-  auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
-//    PrintEventStatistics(
-//      absoHit->GetEdep(), absoHit->GetTrackLength(),
-//      gapHit->GetEdep(), gapHit->GetTrackLength());
-    G4cout << "--> End of event: " << eventID << "\n" << G4endl;      
-  }
-
-  // Fill histograms, ntuple
-  //
+  auto detHit = (*detHC)[detHC->entries()-1];
 
   // get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
 
   // fill histograms
-  analysisManager->FillH1(0, absoHit->GetEdep());
-  analysisManager->FillH1(1, absoHit->GetTrackLength());
+  analysisManager->FillH1(0, detHit->GetEdep());
+  analysisManager->FillH1(1, detHit->GetTrackLength());
 
   // fill ntuple
-  analysisManager->FillNtupleDColumn(0, absoHit->GetEdep());
-  analysisManager->FillNtupleDColumn(1, absoHit->GetTrackLength());
+  analysisManager->FillNtupleDColumn(0, detHit->GetEdep());
+  analysisManager->FillNtupleDColumn(1, detHit->GetTrackLength());
   analysisManager->AddNtupleRow();
 }
 

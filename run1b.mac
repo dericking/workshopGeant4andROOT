@@ -1,0 +1,24 @@
+# Macro example
+#
+# Can be run in batch, without graphic
+# or interactively: Idle> /control/execute run1.mac
+# 
+# change the default number of workers (in multi-threading mode)
+#/run/numberOfThreads 4
+#
+# Kind of tutorial:
+# interactively with visualization, issue the commands one by one:
+#
+# Example has the ability to set a global field.
+#/globalField/setValue 2 0 0 tesla
+#/run/beamOn 10
+#
+
+/run/initialize
+
+# electron 300 MeV in direction (0.,0.,1.)
+/gun/particle mu+
+/gun/energy 300 MeV
+/run/beamOn 25
+
+

@@ -23,9 +23,6 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-//
-/// \file B4/B4c/src/RunAction.cc
-/// \brief Implementation of the B4::RunAction class
 
 #include "RunAction.hh"
 
@@ -46,19 +43,11 @@ RunAction::RunAction()
   G4RunManager::GetRunManager()->SetPrintProgress(1);
 
   // Create analysis manager
-  // The choice of the output format is done via the specified
-  // file extension.
   auto analysisManager = G4AnalysisManager::Instance();
 
-  // Create directories
-  //analysisManager->SetHistoDirectoryName("histograms");
-  //analysisManager->SetNtupleDirectoryName("ntuple");
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetNtupleMerging(true);
-    // Note: merging ntuples is available only with Root output
-
-  // Book histograms, ntuple
-  //
+  // Note: merging ntuples is available only with Root output
 
   // Creating histograms
   analysisManager->CreateH1("Edep","Edep in absorber", 110, 0., 330*MeV);
@@ -75,19 +64,11 @@ RunAction::RunAction()
 
 void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
-  //inform the runManager to save random number seed
-  //G4RunManager::GetRunManager()->SetRandomNumberStore(true);
-
   // Get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
 
   // Open an output file
-  //
   G4String fileName = "B4.root";
-  // Other supported output types:
-  // G4String fileName = "B4.csv";
-  // G4String fileName = "B4.hdf5";
-  // G4String fileName = "B4.xml";
   analysisManager->OpenFile(fileName);
   G4cout << "Using " << analysisManager->GetType() << G4endl;
 }

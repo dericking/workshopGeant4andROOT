@@ -62,8 +62,7 @@ private:
                             G4double gapEdep, G4double gapTrackLength) const;
 
   // data members
-  G4int fAbsHCID = -1;
-  G4int fGapHCID = -1;
+  G4int fDetHCID = -1;
 };
 
 }
