@@ -1,23 +1,10 @@
-# Macro file for example B4
-#
-# To be run preferably in batch, without graphics:
-# % exampleB4[a,b,c,d]  -m run2.mac
-#
-# Produce Histograms and Ntuples
-#
-#/run/numberOfThreads 4
-#/control/cout/ignoreThreadsExcept 0
-#
-# reduce the verbosity level for EM and hadronic physics
-#/process/em/verbose 0
-#/process/had/verbose 0
-#
+# Macro file for WorkshopExample
+
 /run/initialize
-#
-# Default kinemtics:  
-# electron 300 MeV in direction (0.,0.,1.)
-# 10000 events
-#
+
+/gun/particle e-
+/gun/energy 300. MeV
+
 /run/printProgress 1000
-/run/beamOn 10000
+/run/beamOn 500000
 
