@@ -1,5 +1,6 @@
 # Specific Directories
 /build/
+/ROOT/B4.root
 
 # Prerequisites
 *.d
