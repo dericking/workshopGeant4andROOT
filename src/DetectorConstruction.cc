@@ -142,9 +142,9 @@ void DetectorConstruction::ConstructSDandField()
 
   //////////////////////////////////////////////////////////////////////////////
   // CODEBLOCK #3 ==> Sensitive detectors -- Uncomment 3 lines below after detector is built
-  CalorimeterSD * detectorSD = new CalorimeterSD("dectectorSD","DetectorHitsCollection",1);
-  G4SDManager::GetSDMpointer()->AddNewDetector(detectorSD);
-  SetSensitiveDetector("detectorLV",detectorSD);
+//  CalorimeterSD * detectorSD = new CalorimeterSD("dectectorSD","DetectorHitsCollection",1);
+//  G4SDManager::GetSDMpointer()->AddNewDetector(detectorSD);
+//  SetSensitiveDetector("detectorLV",detectorSD);
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -153,9 +153,9 @@ void DetectorConstruction::ConstructSDandField()
   // Create global magnetic field messenger.
   // Uniform magnetic field is then created automatically if
   // the field value is not zero.
-//  G4ThreeVector fieldValue;
-//  fMagFieldMessenger = new G4GlobalMagFieldMessenger(fieldValue);
-//  fMagFieldMessenger->SetVerboseLevel(1);
+  G4ThreeVector fieldValue;
+  fMagFieldMessenger = new G4GlobalMagFieldMessenger(fieldValue);
+  fMagFieldMessenger->SetVerboseLevel(1);
 
   // Register the field messenger for deleting
   G4AutoDelete::Register(fMagFieldMessenger);
