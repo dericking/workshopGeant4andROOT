@@ -44,7 +44,8 @@ target_link_libraries(WorkshopExample ${Geant4_LIBRARIES})
 set(WORKSHOPEXAMPLE_SCRIPTS
   gui.mac
   init_vis.mac
-  run1.mac
+  run1a.mac
+  run1b.mac
   run2.mac
   vis.mac
   )
