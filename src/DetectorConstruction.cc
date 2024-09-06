@@ -82,73 +82,49 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4LogicalVolume * worldLV = new G4LogicalVolume(worldS,defaultMaterial,"World");
   auto worldPV = new G4PVPlacement(nullptr,G4ThreeVector(),worldLV,"World",nullptr,false,0,fCheckOverlaps);
 
-/*
-  //////////////////////////////////////////////////////////////////////////////
-  // HANDS-ON #1: TARGET
-  G4double targRin  = 0;
-  G4double targRout = 2*cm;
-  G4double targZ    = 5*mm;
-  G4double targXpos = 0.;
-  G4double targYpos = 0.;
-  G4double targZpos = 0.;
-  G4Tubs * targetSolid = new G4Tubs("Target",targRin,targRout,targZ/2.,0*deg,360*deg);
-
-  nistManager->FindOrBuildMaterial("G4_Fe");
-  G4Material * targetMaterial = G4Material::GetMaterial("G4_Fe");
-  
-  G4LogicalVolume * targLV = new G4LogicalVolume(targetSolid,targetMaterial,"TargetLV");
-  new G4PVPlacement(0,G4ThreeVector(targXpos,targYpos,targZpos),targLV,"TargetPV",worldLV,false,0,fCheckOverlaps);
-  //////////////////////////////////////////////////////////////////////////////
-*/
-  
   //////////////////////////////////////////////////////////////////////////////
   // HANDS-ON #1: Detector/Calorimeter
   // Create Lead-Scintillating Fiber Detector material
   // FETCH POLYETHLENE FROM NISTMANAGER
-  nistManager->FindOrBuildMaterial("G4_POLYETHYLENE");
-  G4Material * matPE = G4Material::GetMaterial("G4_POLYETHYLENE");
 
-  // DEFINE DETECTOR
-  G4double detLx = worldSizeXY * 0.9;
-  G4double detLy = worldSizeXY * 0.9;
-  G4double detPolyLz = 10.*cm;
-  
-  G4Box * detectorSolid = new G4Box("detector",detLx/2.,detLy/2.,detPolyLz/2.);
-  G4LogicalVolume * detectorLV = new G4LogicalVolume(detectorSolid,matPE,"detectorLV");
-  G4double detectorZpos = worldSizeZ/2.0*0.85;
-  new G4PVPlacement(0,G4ThreeVector(0,0,detectorZpos),detectorLV,"detectorPV",worldLV,false,0,fCheckOverlaps);
+
+
+
+
   //////////////////////////////////////////////////////////////////////////////
-  
-  
+
+
   //////////////////////////////////////////////////////////////////////////////
   // HANDS-ON #2: Radiator
   // FETCH LEAD (PB) FROM NISTMANAGER
-  nistManager->FindOrBuildMaterial("G4_Pb");
-  G4Material * matPb = G4Material::GetMaterial("G4_Pb");
-  G4double detLeadLz = 10.*cm;
- 
-  G4Box * leadPlateSolid = new G4Box("leadPlate",detLx/2.,detLy/2.,detLeadLz/2.);
-  G4LogicalVolume * leadPlateLV = new G4LogicalVolume(leadPlateSolid,matPb,"leadPlateLV");
-  G4double leadPlateZpos = worldSizeZ/2.0*0.85 - detPolyLz/2. - detLeadLz/2.;
-  new G4PVPlacement(0,G4ThreeVector(0,0,leadPlateZpos),leadPlateLV,"leadPlatePV",worldLV,false,0,fCheckOverlaps);
+
+
+
+
+
+
   //////////////////////////////////////////////////////////////////////////////
 
- 
+
   //////////////////////////////////////////////////////////////////////////////
   // Visualization attributes
   //worldLV->SetVisAttributes(G4VisAttributes::GetInvisible());
   G4VisAttributes * worldVisAtt   = new G4VisAttributes( G4Colour(149./255.,149./255.,100./255.,1.) );
   worldVisAtt->SetForceWireframe(true);
   worldLV->SetVisAttributes(worldVisAtt);
-  
+
   //////////////////////////////////////////////////////////////////////////////
   // HANDS-ON #3: Visual Attributes
-  G4VisAttributes * pbVisAtt   = new G4VisAttributes( G4Colour(255./255.,0./255.,0./255.,1.) );
-  pbVisAtt->SetForceWireframe(true);
-  leadPlateLV->SetVisAttributes(pbVisAtt);
+
+
+
   //////////////////////////////////////////////////////////////////////////////
-  
-  //////////////////////////////////////////////////////////////////////////////  
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////
   // Print materials
   G4cout << *(G4Material::GetMaterialTable()) << G4endl;
 
